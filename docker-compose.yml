@@ -8,8 +8,8 @@ services:
       restart: always
       environment:
         RHS_DB: "host=db password=${POSTGRES_PASSWORD:-secret} user=${POSTGRES_USER:-iden3} database=rhs"
-      ports:
-        - 8080:8080
+      # ports:
+      #   - 8080:8080
       networks:
         - rhs_network
       depends_on:
@@ -37,7 +37,7 @@ services:
       image: traefik:v2.8
       restart: always
       ports:
-        - 80:80
+        - 5080:80
       networks:
         - rhs_network
       volumes:
