@@ -15,12 +15,13 @@ services:
       depends_on:
         - db
       labels:
-        - "traefik.http.routers.issuer.rule=PathPrefix(`/node`)"
         - "traefik.enable=true"
+        - "traefik.http.routers.rhs.rule=PathPrefix(`/node`)"
+        - "traefik.http.services.rhs.loadbalancer.server.port=8080"
 
 
     db:
-      image: postgres:15-alpine
+      image: postgres:17-alpine
       restart: always
       environment:
         POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-secret}"
